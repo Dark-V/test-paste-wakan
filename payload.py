@@ -1,9 +1,14 @@
 import os
 
-def generate_folder_structure(base_path):
+def generate_folder_structure(base_path, blacklist=None):
     folder_structure = {}
     for foldername, subfolders, filenames in os.walk(base_path):
         relative_path = os.path.relpath(foldername, base_path)
+        
+        # Check if the folder is in the blacklist
+        if blacklist and any(item in relative_path.split(os.path.sep) for item in blacklist):
+            continue
+        
         if relative_path == ".":
             continue  # Skip the base folder itself
         files = [filename for filename in filenames if filename.endswith(".html")]
@@ -99,8 +104,11 @@ def generate_html_file(folder_structure):
 # Define the base path where the Python script is located
 base_path = r"C:\Users\DarkV\Desktop\simple-page-main"
 
+# Define the folders to exclude from the folder structure
+blacklist = [".git"]  # Add the folders you want to exclude
+
 # Generate the folder structure
-folder_structure = generate_folder_structure(base_path)
+folder_structure = generate_folder_structure(base_path, blacklist)
 
 # Generate the HTML content
 html_content = generate_html_file(folder_structure)

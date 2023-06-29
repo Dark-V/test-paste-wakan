@@ -1,0 +1,34 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>File List</title>
+        <style>
+            .file-item {
+                padding: 10px;
+                border: 1px solid #ccc;
+                cursor: pointer;
+            }
+        </style>
+        <script>
+            function showPreview(file) {
+                var xhr = new XMLHttpRequest();
+                xhr.open("GET", file, true);
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        document.getElementById("preview").innerHTML = xhr.responseText;
+                    }
+                };
+                xhr.send();
+            }
+        </script>
+    </head>
+    <body>
+        <h1>File List</h1>
+        <ul>
+    <li class="file-item" onmouseover="showPreview('1984.html')">1984.html</li><li class="file-item" onmouseover="showPreview('BabyRage.html')">BabyRage.html</li><li class="file-item" onmouseover="showPreview('ban.html')">ban.html</li>
+        </ul>
+        <div id="preview"></div>
+    </body>
+    </html>
+    

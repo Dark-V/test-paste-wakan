@@ -54,7 +54,7 @@ def generate_html_file(folder_structure):
             }
         
             #preview {
-                max-width: 360px;
+                max-width: 400px;
                 overflow-wrap: break-word;
                 word-wrap: break-word;
                 white-space: pre-wrap;

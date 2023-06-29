@@ -52,6 +52,13 @@ def generate_html_file(folder_structure):
                 padding: 5px;
                 cursor: pointer;
             }
+        
+            #preview {
+                max-width: 340px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
         </style>
         <script>
             function showPreview(file) {

@@ -1,0 +1,78 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>File List</title>
+        <style>
+            .folder-item {
+                padding: 10px;
+                border: 1px solid #ccc;
+                cursor: pointer;
+            }
+            
+            .folder-name {
+                font-weight: bold;
+                margin-bottom: 5px;
+            }
+            
+            .file-item {
+                padding: 5px;
+                cursor: pointer;
+            }
+        </style>
+        <script>
+            function showPreview(file) {
+                var xhr = new XMLHttpRequest();
+                xhr.open("GET", file, true);
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        document.getElementById("preview").innerHTML = xhr.responseText;
+                    }
+                };
+                xhr.send();
+            }
+            
+            function bindClickEvents() {
+                var folderItems = document.getElementsByClassName("folder-item");
+                for (var i = 0; i < folderItems.length; i++) {
+                    folderItems[i].addEventListener("click", function() {
+                        var fileList = this.getElementsByClassName("file-list")[0];
+                        fileList.style.display = (fileList.style.display === "none") ? "block" : "none";
+                    });
+                }
+                
+                var fileItems = document.getElementsByClassName("file-item");
+                for (var i = 0; i < fileItems.length; i++) {
+                    fileItems[i].addEventListener("click", function(e) {
+                        e.stopPropagation(); // Prevent folder toggle when clicking a file
+                        showPreview(this.getAttribute("data-file"));
+                    });
+                }
+            }
+            
+            window.addEventListener("DOMContentLoaded", bindClickEvents);
+        </script>
+    </head>
+    <body>
+        <h1>File List</h1>
+        <ul class="folder-list">
+    
+        <li class="folder-item">
+            <span class="folder-name">folder1</span>
+            <ul class="file-list" style="display: none;">
+        <li class="file-item" data-file="1984.html">1984.html</li><li class="file-item" data-file="BabyRage.html">BabyRage.html</li><li class="file-item" data-file="ban.html">ban.html</li><li class="file-item" data-file="BibleThump.html">BibleThump.html</li><li class="file-item" data-file="bidenPog.html">bidenPog.html</li>
+            </ul>
+        </li>
+        
+        <li class="folder-item">
+            <span class="folder-name">folder2</span>
+            <ul class="file-list" style="display: none;">
+        <li class="file-item" data-file="cat.html">cat.html</li><li class="file-item" data-file="foxhole.html">foxhole.html</li><li class="file-item" data-file="index.html">index.html</li><li class="file-item" data-file="Jokerge.html">Jokerge.html</li><li class="file-item" data-file="KonCha.html">KonCha.html</li><li class="file-item" data-file="LETSGO.html">LETSGO.html</li>
+            </ul>
+        </li>
+        
+        </ul>
+        <div id="preview"></div>
+    </body>
+    </html>
+    

@@ -54,10 +54,10 @@ def generate_html_file(folder_structure):
             }
         
             #preview {
-                max-width: 340px;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                white-space: nowrap;
+                max-width: 360px;
+                overflow-wrap: break-word;
+                word-wrap: break-word;
+                white-space: pre-wrap;
             }
         </style>
         <script>

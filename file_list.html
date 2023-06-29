@@ -21,12 +21,23 @@
                 };
                 xhr.send();
             }
+            
+            function bindClickEvent() {
+                var fileItems = document.getElementsByClassName("file-item");
+                for (var i = 0; i < fileItems.length; i++) {
+                    fileItems[i].addEventListener("click", function() {
+                        showPreview(this.getAttribute("data-file"));
+                    });
+                }
+            }
+            
+            window.addEventListener("DOMContentLoaded", bindClickEvent);
         </script>
     </head>
     <body>
         <h1>File List</h1>
         <ul>
-    <li class="file-item" onmouseover="showPreview('1984.html')">1984.html</li><li class="file-item" onmouseover="showPreview('BabyRage.html')">BabyRage.html</li><li class="file-item" onmouseover="showPreview('ban.html')">ban.html</li>
+    <li class="file-item" data-file="1984.html">1984.html</li><li class="file-item" data-file="BabyRage.html">BabyRage.html</li><li class="file-item" data-file="ban.html">ban.html</li>
         </ul>
         <div id="preview"></div>
     </body>

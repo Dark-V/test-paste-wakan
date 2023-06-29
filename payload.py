@@ -18,7 +18,7 @@ def generate_html_file(folder_structure):
             <ul class="file-list" style="display: none;">
         '''
         for file in files:
-            folder_html += f'<li class="file-item" data-file="{file}">{file}</li>'
+            folder_html += f'<li class="file-item" data-file="{folder_name}/{file}">{file}</li>'
         
         folder_html += '''
             </ul>
